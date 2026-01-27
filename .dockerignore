@@ -1,0 +1,52 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Documentation
+README.md
+*.md
+docs/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node.js (client)
+client/*
+
+# PHP
+php/vendor/
+php/.env
+php/.env.*
+php/storage/logs/*
+php/storage/framework/cache/*
+php/storage/framework/sessions/*
+php/storage/framework/views/*
+php/bootstrap/cache/*
+
+# Docker
+docker-compose*.yml
+.dockerignore
+Dockerfile*
+
+# CI/CD
+ci/
+.github/
+
+# Tests
+php/tests/
+php/phpunit.xml
+php/.phpunit.result.cache
+
+# Temporary files
+*.tmp
+*.temp
+*.log
