@@ -10,6 +10,3 @@ build:
 	$(docker_compose_bin) build
 
 restart: down up
-
-rr-reload:
-	$(docker_compose_bin) restart octane
