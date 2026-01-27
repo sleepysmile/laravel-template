@@ -25,7 +25,7 @@ client/*
 # PHP
 php/vendor/
 php/.env
-php/.env.*
+php/.env.local
 php/storage/logs/*
 php/storage/framework/cache/*
 php/storage/framework/sessions/*
