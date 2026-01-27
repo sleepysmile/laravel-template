@@ -41,6 +41,14 @@ services:
       - redis
       - postgres
 
+  buggregator:
+    image: butschster/buggregator:1
+    container_name: "fst-buggregator"
+    ports:
+      - "8082:8000"
+    networks:
+      - local
+
   client:
     image: node:25-alpine3.22
     container_name: "fst-client"
