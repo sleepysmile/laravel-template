@@ -18,15 +18,6 @@ Route::group([
             "auth:sanctum",
         ]
     ], function () {
-        Route::get("/users", [UserController::class, "find"]);
 
-        Route::group([
-            "prefix" => "/chat"
-        ], function () {
-            Route::post("/init", [ChatController::class, "init"]);
-            Route::post("/message/create", [MessageController::class, "create"]);
-            Route::get("/message/pooling", [MessageController::class, "pooling"]);
-            Route::get("/message/find", [MessageController::class, "find"]);
-        });
     });
 });
