@@ -29,14 +29,4 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->append(XhprofProfiler::class);
         $middleware->redirectTo(false);
     })
-    ->withExceptions(using: function (Exceptions $exceptions): void {
-        $tokenGenerator = new TokenGenerator();
-
-        $apiFormatter = new ApiExceptionFormatter($exceptions, $tokenGenerator);
-        $apiFormatter->configure();
-
-        $exceptions->context(fn () => [
-            "token" => $tokenGenerator->token()
-        ]);
-    })
     ->create();
