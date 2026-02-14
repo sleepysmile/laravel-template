@@ -4,7 +4,6 @@ namespace App\Http\Core\Exceptions;
 
 use App\Http\Core\Responses\ErrorResponse;
 use App\Http\Core\Responses\ValidationErrorResponse;
-use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Contracts\Container\Container;
@@ -62,15 +61,10 @@ class ApiHandler extends ExceptionHandler
         ))->toResponse($request);
     }
 
-    /**
-     * Report or log an exception.
-     *
-     * @param Throwable $exception
-     * @return void
-     *
-     * @throws Exception
-     */
-    public function report(Throwable $e)
+    protected function context()
     {
+        return array_merge(parent::context(), [
+            "token" => $this->tokenGenerator->token()
+        ]);
     }
 }
