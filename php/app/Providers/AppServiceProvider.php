@@ -25,21 +25,16 @@ class AppServiceProvider extends ServiceProvider
             return new TokenGenerator();
         });
 
-        $this->app->bind(ExceptionHandler::class, function (Application $application) {
-            if ($application->runningInConsole()) {
-                return $application->make(Handler::class);
-            }
-
-            /** @var Request $request */
-            $request = $application->make(Request::class);
+        if (! $this->app->runningInConsole()) {
+            $request = $this->app->make(Request::class);
             $isApi = $request->is("api/*");
 
             if ($isApi) {
-                return $application->make(ApiHandler::class);
+                $this->app->singleton(ExceptionHandler::class, ApiHandler::class);
+            } else {
+                $this->app->singleton(ExceptionHandler::class, Handler::class);
             }
-
-            return $application->make(Handler::class);
-        });
+        }
     }
 
     /**

@@ -1,10 +1,8 @@
 <?php
 
 use App\Cli\Ui as Cli;
-use App\Http\Core\Exceptions\ApiExceptionFormatter;
-use App\Http\Core\Exceptions\TokenGenerator;
+use App\Providers\AppServiceProvider;
 use Illuminate\Foundation\Application;
-use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Maantje\XhprofBuggregatorLaravel\Middleware\XhprofProfiler;
 use Maantje\XhprofBuggregatorLaravel\XhprofServiceProvider;
@@ -19,12 +17,13 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withProviders([
         XhprofServiceProvider::class,
+        AppServiceProvider::class
     ])
+    ->withExceptions()
     ->withCommands([
-        Cli\TestCommand::class,
-        Cli\UserMakeCli::class,
-
+        __DIR__ . "/../app/Cli/Ui",
     ])
+//    ->withKernels()
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->append(XhprofProfiler::class);
         $middleware->redirectTo(false);
