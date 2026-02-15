@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Shared\Models\User;
 use Faker\Factory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -17,12 +17,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory(20)->create([
-            'name' => Factory::create()->name(),
-            'email' => Factory::create()->email(),
-            'password' => Hash::make("12345")
-        ]);
+        $this->call(UserSeeder::class);
     }
 }

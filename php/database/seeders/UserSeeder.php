@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Cli\Handlers\CreateUser;
-use App\Cli\Handlers\CreateUserCommand;
+use App\Console\Handlers\CreateUser;
+use App\Console\Handlers\CreateUserCommand;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
 
