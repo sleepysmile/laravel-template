@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Shared\Services;
+namespace App\Shared\Services\Token;
 
 class TokenGenerator
 {

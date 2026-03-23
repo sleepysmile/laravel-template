@@ -1,6 +1,5 @@
 <?php
 
-use App\Cli\Ui as Cli;
 use App\Providers\MainServiceProvider;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Application;

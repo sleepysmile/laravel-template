@@ -4,7 +4,7 @@ namespace App\Shared\Handlers\Api;
 
 use App\Shared\Responses\Api\ErrorResponse;
 use App\Shared\Responses\Api\ValidationErrorResponse;
-use App\Shared\Services\TokenGenerator;
+use App\Shared\Services\Token\TokenGenerator;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Contracts\Container\Container;
@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response as HttpResponse;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Throwable;
 
-class Handler extends ExceptionHandler
+class ErrorHandler extends ExceptionHandler
 {
     protected TokenGenerator $tokenGenerator;
 
@@ -35,6 +35,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $e)
     {
+        $isApi = $request->is("api/*") || $request->ajax() || $request->wantsJson();
+        if (! $isApi) {
+            return parent::render($request, $e);
+        }
+
         if ($e instanceof ValidationException) {
             return (new ValidationErrorResponse($e->errors()))->toResponse($request);
         }
