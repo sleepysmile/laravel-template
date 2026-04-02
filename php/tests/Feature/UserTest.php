@@ -41,7 +41,6 @@ class UserTest extends TestCase
         Sanctum::actingAs($user);
         $response = $this->postJson("/api/user", $payload);
 
-        dd($response->ddBody());
         $response->assertOk();
     }
 }
