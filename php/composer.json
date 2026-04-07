@@ -11,7 +11,8 @@
         "laravel/sanctum": "^4.2",
         "laravel/tinker": "^2.10.1",
         "livewire/livewire": "^3.7",
-        "spatie/laravel-data": "^4.19"
+        "spatie/laravel-data": "^4.19",
+        "spatie/laravel-prometheus": "^1.4"
     },
     "require-dev": {
         "ext-xhprof": "*",

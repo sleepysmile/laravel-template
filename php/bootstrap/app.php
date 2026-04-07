@@ -1,6 +1,7 @@
 <?php
 
 use App\Providers\MainServiceProvider;
+use App\Providers\PrometheusServiceProvider;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -16,7 +17,8 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withProviders([
         XhprofServiceProvider::class,
         MainServiceProvider::class,
-        RouteServiceProvider::class
+        RouteServiceProvider::class,
+        PrometheusServiceProvider::class
     ])
     ->withExceptions()
     ->withCommands([
