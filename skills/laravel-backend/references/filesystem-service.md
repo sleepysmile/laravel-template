@@ -283,14 +283,17 @@ use Illuminate\Support\Facades\Storage;
 
 class UpdateUserAvatar
 {
+    protected ModelFilesystem $filesystem;
+
+    public function __construct(ModelFilesystem $filesystem)
+    {
+        $this->filesystem = $filesystem;
+    }
+
     public function handle(User $user, UploadedFile $avatar): string
     {
-        $storage = Storage::disk();
-        $adapter = new FilesystemAdapter($storage);
-        $fs = new ModelFilesystem($adapter);
-
         // Автоматически удалит старый аватар и обновит $user->avatar
-        $savedPath = $fs->store(
+        $savedPath = $this->filesystem->store(
             $user,
             'avatar',
             FileAdapter::fromUploadedFile($avatar)

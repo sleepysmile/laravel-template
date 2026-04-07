@@ -103,17 +103,14 @@ public function update(UpdateUserCommand $command, UpdateUser $handler)
 
 ## ErrorResponse
 
-Используется для ответов с ошибками (если реализован).
+Используется для ответов с ошибками (если реализован). Любая ошибка трансформируется в ответ-ошибку при помощи ErrorHandler
 
 **Предполагаемое использование:**
 
 ```php
-use App\Shared\Responses\Api\ErrorResponse;
+throw new LogicException("something wrong")
 
-return new ErrorResponse(
-    message: 'Resource not found',
-    status: 404
-);
+// или
 
 // С дополнительными данными
 return new ErrorResponse(
